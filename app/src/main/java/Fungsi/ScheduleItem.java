@@ -1,4 +1,4 @@
-package com.esaturasi.Fungsi;
+package Fungsi;
 
 public class ScheduleItem {
     private String subjectName;
