@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".UI_new.OtpNewActivity">
+
+    <TextView
+        android:id="@+id/otp_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="kode otp"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/otp_image"
+        android:layout_width="324dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="152dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_otpnew" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview_blue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="-7dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#2446CE"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otp_image">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/otp_digit_1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_edittext_otp"
+                    android:gravity="center"
+                    android:hint="1"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <EditText
+                    android:id="@+id/otp_digit_2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_edittext_otp"
+                    android:gravity="center"
+                    android:hint="4"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <!-- EditText untuk kode OTP 3 -->
+                <EditText
+                    android:id="@+id/otp_digit_3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_edittext_otp"
+                    android:gravity="center"
+                    android:hint="8"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+
+                <!-- EditText untuk kode OTP 4 -->
+                <EditText
+                    android:id="@+id/otp_digit_4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_edittext_otp"
+                    android:gravity="center"
+                    android:hint="9"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <!-- Tombol Kirim -->
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="#B9E4EA"
+                android:minHeight="70dp"
+                android:padding="12dp"
+                android:radius="16dp"
+                android:text="Kirim"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

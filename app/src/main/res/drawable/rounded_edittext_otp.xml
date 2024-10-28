@@ -1,0 +1,12 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Warna latar belakang kotak -->
+    <solid android:color="@color/abu"/> <!-- Ganti warna sesuai kebutuhan -->
+
+    <!-- Sudut membulat -->
+    <corners android:radius="12dp"/> <!-- Semakin besar radius, semakin oval -->
+
+    <!-- Garis tepi (border) -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/abu_gelap"/> <!-- Warna border -->
+</shape>

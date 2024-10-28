@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Latar belakang bulat -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/white" /> <!-- Warna biru -->
+        </shape>
+    </item>
+
+    <!-- Gambar ikon panah -->
+    <item android:drawable="@drawable/ic_panah"
+        android:gravity="center"/> <!-- Sesuaikan dengan icon panah kamu -->
+
+
+</layer-list>

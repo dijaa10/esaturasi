@@ -1,0 +1,77 @@
+<!-- item_schedule.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:elevation="4dp"
+    android:padding="8dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="horizontal">
+
+        <!-- Gambar profil guru -->
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_profildwi"
+            android:scaleType="centerCrop"
+            android:background="@drawable/gambar_bulat" />
+
+        <!-- Detail pelajaran dan guru -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <TextView
+                android:id="@+id/subject_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Beladiri"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/subject_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="07.00 - 08.30 WIB"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/subject_teacher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Guru"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guru"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- Gambar materi pelajaran -->
+        <ImageView
+            android:id="@+id/material_image"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_beladiri"
+            android:scaleType="fitCenter" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
