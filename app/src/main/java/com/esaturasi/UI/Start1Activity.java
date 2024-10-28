@@ -1,6 +1,8 @@
-package com.esaturasi.UI_new;
+package com.esaturasi.UI;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,17 +12,22 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.esaturasi.R;
 
-public class Splashscreen4Activity extends AppCompatActivity {
+public class Start1Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_splashscreen4);
+        setContentView(R.layout.activity_start1);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
     }
+    public void mulai(View view){
+        Intent intent = new Intent(Start1Activity.this,Start2Activity.class);
+        startActivity(intent);
+    }
 }
+

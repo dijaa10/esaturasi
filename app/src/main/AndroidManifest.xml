@@ -13,15 +13,30 @@
         android:theme="@style/Theme.Esaturasi"
         tools:targetApi="31">
         <activity
-            android:name=".UI.HomeActivity"
+            android:name=".UI.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".UI.Start1Activity"
             android:exported="false" />
         <activity
-            android:name=".UI.LupasActivity"
+            android:name=".Jadwal_kelas.JadwalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UI.Start2Activity"
+            android:exported="false" />
+        <activity
+        android:name=".UI.Start3Activity"
             android:exported="false" />
         <activity
             android:name=".UI.LoginActivity"
             android:exported="false" />
         <activity
+
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
