@@ -38,6 +38,10 @@
             android:name=".UI.Start1Activity"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+
             android:name=".Jadwal_kelas.JadwalActivity"
             android:exported="false" />
         <activity
@@ -50,14 +54,16 @@
             android:name=".UI.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:name=".halaman_utama.BerandaFragment"
+            android:exported="false" />
+        <activity
+            android:name=".halaman_utama.InfromasiFragment"
+            android:exported="false" />
+        <activity
+            android:name=".halaman_utama.ProfilFragment"
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
 
         <meta-data
             android:name="preloaded_fonts"

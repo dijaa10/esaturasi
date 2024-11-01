@@ -9,10 +9,6 @@ import androidx.fragment.app.Fragment;
 
 import com.esaturasi.R;
 
-/**
- * Created by tutlane on 09-01-2018.
- */
-
 public class BerandaFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
