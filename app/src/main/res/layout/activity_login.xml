@@ -12,14 +12,14 @@
         android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="55dp"
         android:fontFamily="@font/poppins_bold"
         android:text="Login"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,7 +27,8 @@
         android:id="@+id/login_image"
         android:layout_width="354dp"
         android:layout_height="246dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="132dp"
+        android:foregroundGravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,108 +37,109 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardview_blue"
-        android:layout_width="360dp"
-        android:layout_height="wrap_content"
+        android:layout_width="340dp"
+        android:layout_height="250dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="-1dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="#2446CE"
         app:cardCornerRadius="30dp"
         app:cardElevation="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_image"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_image">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="350dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
             <!-- Input NISN -->
+
+            <!-- Input Password -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_edittext"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/abu_gelap"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="8dp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:radius="8dp">
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_person" /> <!-- Ganti dengan ikon orang -->
+                    android:src="@drawable/ic_person" />
 
                 <EditText
                     android:id="@+id/input_nisn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
+                    android:background="@android:color/transparent"
                     android:hint="Masukkan NISN"
                     android:minHeight="48dp"
-                    android:paddingStart="8dp" />
+                    android:paddingStart="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="15sp" />
             </LinearLayout>
 
-            <!-- Input Password -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="7dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_edittext"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/abu_gelap"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:padding="8dp"
-                android:paddingStart="8dp"
-                android:paddingEnd="8dp"
-                android:radius="10dp">
+                android:padding="8dp">
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_gembok" /> <!-- Ganti dengan ikon gembok -->
+                    android:src="@drawable/ic_pass" />
 
                 <EditText
                     android:id="@+id/input_password"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_edittext"
+                    android:background="@android:color/transparent"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:padding="12dp"
-                    android:paddingStart="8dp" />
+                    android:paddingStart="8dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="15dp" />
 
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_hide" /> <!-- Ganti dengan ikon mata -->
+                    android:layout_marginEnd="10dp"
+                    android:id="@+id/hide"
+                    android:onClick="tampil"
+                    android:src="@drawable/ic_bukamata" />
             </LinearLayout>
 
             <!-- Tombol Kirim -->
             <Button
                 android:id="@+id/btn_submit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_width="300dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="7dp"
                 android:backgroundTint="#5C9EDB"
-                android:minHeight="70dp"
-                android:padding="12dp"
-                android:radius="16dp"
+                android:padding="0dp"
                 android:text="Kirim"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

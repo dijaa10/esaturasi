@@ -788,7 +788,7 @@
             android:layout_height="35dp"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="100dp"
-            android:src="@drawable/ic_person" />
+            android:src="@drawable/ic_person1" />
     </LinearLayout>
 
 

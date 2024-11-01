@@ -203,7 +203,7 @@ android:padding="8dp">
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/ic_person"
+                        android:src="@drawable/ic_person1"
                         android:scaleType="centerCrop"
                         android:background="@drawable/gambar_bulat" />
 
@@ -278,7 +278,7 @@ android:padding="8dp">
                         android:layout_height="40dp"
                         android:background="@drawable/gambar_bulat"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_person" />
+                        android:src="@drawable/ic_person1" />
 
 
                     <LinearLayout

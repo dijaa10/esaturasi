@@ -70,7 +70,7 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_person" /> <!-- Ganti dengan ikon orang -->
+                    android:src="@drawable/ic_person1" /> <!-- Ganti dengan ikon orang -->
 
                 <EditText
                     android:id="@+id/input_email"

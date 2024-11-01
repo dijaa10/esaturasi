@@ -97,11 +97,11 @@ public class JadwalActivity extends AppCompatActivity {
             case "Senin":
                 return Arrays.asList(
                         new ScheduleItem("Bahasa Indonesia", "07.00 - 08.30", "Chodijah", R.drawable.ic_profildija, R.drawable.ic_bahasa),
-                        new ScheduleItem("Matematika", "10.00 - 11.30", "Gilang Bayu", R.drawable.ic_person, R.drawable.ic_mtk)
+                        new ScheduleItem("Matematika", "10.00 - 11.30", "Gilang Bayu", R.drawable.ic_person1, R.drawable.ic_mtk)
                 );
             case "Selasa":
                 return Arrays.asList(
-                        new ScheduleItem("Pemrograman Web", "08.00 - 09.30", "Bachtiar", R.drawable.ic_person, R.drawable.ic_pemrograman),
+                        new ScheduleItem("Pemrograman Web", "08.00 - 09.30", "Bachtiar", R.drawable.ic_person1, R.drawable.ic_pemrograman),
                         new ScheduleItem("Beladiri", "10.00 - 11.30", "Dwi Srikandi", R.drawable.ic_profildwi, R.drawable.ic_beladiri)
                 );
             case "Rabu":
