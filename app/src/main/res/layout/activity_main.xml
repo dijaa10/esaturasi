@@ -3,78 +3,30 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/ic_home"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="390dp"
-        android:layout_height="430dp"
-        android:src="@drawable/ic_logo"
-        android:contentDescription="Logo Awal"
-        android:layout_marginTop="55dp"
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/viewPager" />
 
-    <TextView
-        android:id="@+id/judul"
-        android:layout_width="wrap_content"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="WELCOME TO"
-        android:textColor="@color/white"
-        android:textSize="37sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_bold"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-57dp"/>
+        android:background="@android:color/white"
+        app:menu="@menu/menu_navigation"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
-    <TextView
-        android:id="@+id/satu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="E-SATURASI"
-        android:textColor="@color/white"
-        android:textSize="33sp"
-        android:textStyle="bold"
-        android:fontFamily="@font/poppins_bold"
-        app:layout_constraintTop_toBottomOf="@id/judul"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="-15dp"/>
-
-    <TextView
-        android:id="@+id/kata"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="-13dp"
-        android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
-        android:text="Tempat belajar dan inovasi bertemu. Tingkatkan keterampilan Anda untuk masa depan yang cerah"
-        android:textColor="@color/white"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/satu" />
-
-    <Button
-        android:id="@+id/getStartButton"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:text="Get Start"
-        android:backgroundTint="@color/blue"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:gravity="center"
-        android:fontFamily="@font/poppins_bold"
-        app:layout_constraintTop_toBottomOf="@id/kata"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="30dp"
-        android:onClick="mulai" />
 </androidx.constraintlayout.widget.ConstraintLayout>

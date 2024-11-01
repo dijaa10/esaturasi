@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.esaturasi.MainActivity;
 import com.esaturasi.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         // Inisialisasi EditText dan ImageView
         textPassword = findViewById(R.id.input_password);
         input_nisn = findViewById(R.id.input_nisn);
@@ -57,5 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                 textPassword.setSelection(textPassword.length());
             }
         });
+    }
+    public void login(View view){
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,32 +1,53 @@
+
 package com.esaturasi;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import android.view.MenuItem;
 
-import com.esaturasi.UI.HomeActivity;
+import com.esaturasi.Halaman_informasi.InformasiFragment;
+import com.esaturasi.halaman_utama.BerandaFragment;
+import com.esaturasi.halaman_utama.ProfilFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        // Setup BottomNavigationView
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                // untuk menentukan fragment yang akan dimuat
+                if (itemId == R.id.nav_beranda) {
+                    loadFragment(new BerandaFragment());
+                    return true;
+                } else if (itemId == R.id.nav_informasi) {
+                    loadFragment(new InformasiFragment());
+                    return true;
+                } else if (itemId == R.id.nav_profile) {
+                    loadFragment(new ProfilFragment());
+                    return true;
+                }
+                return false; // Jika tidak ada item yang cocok
+            }
         });
+
+        if (savedInstanceState == null) {
+            loadFragment(new BerandaFragment()); // fragment Home saat pertama kali dibuka
+        }
     }
-    public void mulai(View view){
-        Intent intent = new Intent(MainActivity.this, HomeActivity.class);
-        startActivity(intent);
+    private void loadFragment(Fragment fragment) {
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment) // ID dari container yang ada di layout
+                .commit();
     }
 }
