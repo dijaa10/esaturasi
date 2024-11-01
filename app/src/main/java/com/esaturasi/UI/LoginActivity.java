@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-    public void login(View view){
+    public void kirim(View view){
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
