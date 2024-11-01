@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Halaman_informasi.UtamaActivity">
+
+    <!-- Header dengan Search Bar dan Ikon Notifikasi -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:background="@color/blue">
+
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:hint="Cari"
+            android:background="@drawable/search_background_solid"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:inputType="text" />
+
+        <ImageView
+            android:id="@+id/icon_notification"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="12dp"
+            android:src="@drawable/ic_lonceng"
+            android:contentDescription="Notifikasi" />
+    </LinearLayout>
+
+    <!-- Tab Menu dengan TabItem untuk setiap Tab -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:background="@color/white">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_terbaru"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terbaru" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_informasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Informasi" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tab_prestasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prestasi" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- ViewPager2 untuk Menampilkan Fragment di Setiap Tab -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout" />
+
+</RelativeLayout>

@@ -12,11 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Esaturasi"
         tools:targetApi="31">
+
+        <activity
+            android:name=".Halaman_informasi.PrestasiFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Halaman_informasi.InformasiFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Halaman_informasi.TerbaruFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Halaman_informasi.UtamaActivity"
+            android:exported="false" />
         <activity
             android:name=".UI.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,13 +44,12 @@
             android:name=".UI.Start2Activity"
             android:exported="false" />
         <activity
-        android:name=".UI.Start3Activity"
+            android:name=".UI.Start3Activity"
             android:exported="false" />
         <activity
             android:name=".UI.LoginActivity"
             android:exported="false" />
         <activity
-
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
