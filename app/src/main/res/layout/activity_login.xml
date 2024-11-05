@@ -81,8 +81,8 @@
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:hint="Masukkan NISN"
-                    android:minHeight="48dp"
-                    android:paddingStart="8dp"
+
+                    android:paddingStart="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:textSize="15sp" />
@@ -108,12 +108,10 @@
                     android:id="@+id/input_password"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:hint="Password"
                     android:inputType="textPassword"
-                    android:minHeight="48dp"
-                    android:paddingStart="8dp"
+                    android:paddingStart="12dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
                     android:textSize="15dp" />

@@ -8,4 +8,16 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="circular">
+        <item name="cornerSize">50%</item>
+    </style>
+        <!-- Style Kustom untuk Sudut Bulat -->
+        <style name="bulat">
+            <item name="cornerSize">25dp</item>
+        </style>
+
+    <style name="CustomRoundedImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">25dp</item>
+    </style>
 </resources>
