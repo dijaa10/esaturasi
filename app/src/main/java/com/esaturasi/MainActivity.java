@@ -10,6 +10,7 @@ import android.view.MenuItem;
 
 import com.esaturasi.Halaman_informasi.InformasiFragment;
 import com.esaturasi.halaman_utama.BerandaFragment;
+import com.esaturasi.halaman_utama.InfromasiFragment;
 import com.esaturasi.halaman_utama.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import android.view.MenuItem;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new BerandaFragment());
                     return true;
                 } else if (itemId == R.id.nav_informasi) {
-                    loadFragment(new InformasiFragment());
+                    loadFragment(new InfromasiFragment());
                     return true;
                 } else if (itemId == R.id.nav_profile) {
                     loadFragment(new ProfilFragment());

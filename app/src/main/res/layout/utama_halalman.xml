@@ -1,170 +1,24 @@
-<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EEF1FF">
+    android:orientation="vertical"
+    android:background="#F0F4F8">
 
-    <!-- Bilah atas dengan judul dan ikon notifikasi -->
-    <RelativeLayout
-        android:id="@+id/bilahAtas"
+    <!-- TabLayout for Tabs -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3953E1"
-        android:padding="16dp">
+        app:tabIndicatorColor="#3A6FF7"
+        app:tabTextColor="#3A6FF7"
+        app:tabSelectedTextColor="#3A6FF7"/>
 
-        <TextView
-            android:id="@+id/judulTugas"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tugas Kelas"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/teksSemester"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Semester Ganjil 2024"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_below="@id/judulTugas"
-            android:layout_marginTop="4dp" />
-
-        <ImageView
-            android:id="@+id/ikonNotifikasi"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_lonceng"
-             />
-    </RelativeLayout>
-
-    <!-- Tab untuk memfilter tugas -->
-    <LinearLayout
-        android:id="@+id/containerTab"
+    <!-- ViewPager2 for Pages -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/bilahAtas"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Semua"
-            android:backgroundTint="#3953E1"
-            android:textColor="#FFFFFF" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Belum Dikumpulkan"
-            android:backgroundTint="#EEF1FF"
-            android:textColor="#3953E1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Sudah Dikumpulkan"
-            android:backgroundTint="#EEF1FF"
-            android:textColor="#3953E1" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="Terlambat"
-            android:backgroundTint="#EEF1FF"
-            android:textColor="#3953E1" />
-    </LinearLayout>
-
-    <!-- Daftar kartu tugas -->
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/containerTab"
-        android:padding="8dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Kartu Tugas Contoh -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp"
-                android:padding="16dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/judultugas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Latihan soal pythagoras"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/mapelTugas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/judultugas"
-                        android:layout_marginTop="4dp"
-                        android:text="Matematika"
-                        android:textColor="#777777"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/batasWaktuTugas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/mapelTugas"
-                        android:layout_marginTop="4dp"
-                        android:text="Batas Waktu: 25 Oktober 2024, 23:59 WIB"
-                        android:textColor="#777777"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/statusTugas"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/background_status_kuning"
-                        android:padding="4dp"
-                        android:text="Belum Dikumpulkan"
-                        android:textColor="#FFA726"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/lihatDetailText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_below="@id/statusTugas"
-                        android:layout_marginTop="8dp"
-                        android:text="Lihat Detail"
-                        android:textColor="#3953E1"
-                        android:textSize="14sp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Ulangi blok serupa untuk setiap kartu tugas -->
-
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+        android:layout_height="match_parent"/>
+</LinearLayout>

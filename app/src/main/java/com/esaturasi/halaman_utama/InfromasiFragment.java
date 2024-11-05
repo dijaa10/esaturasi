@@ -12,8 +12,7 @@ import com.esaturasi.R;
 public class InfromasiFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate layout fragment
-        return inflater.inflate(R.layout.activity_home, container, false);
+        return inflater.inflate(R.layout.activity_utama, container, false);
     }
 }
 
