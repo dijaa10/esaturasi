@@ -2,7 +2,6 @@ package com.esaturasi.Tugas_kelas;
 
 import android.os.Bundle;
 
-import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -10,12 +9,12 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.esaturasi.R;
 
-public class HalamanUtama extends AppCompatActivity {
+public class TugasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.utama_halalman);
+        setContentView(R.layout.activity_tugas);
 
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager2 viewPager = findViewById(R.id.view_pager);

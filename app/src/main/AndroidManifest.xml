@@ -16,7 +16,7 @@
             android:name=".Tugas_kelas.AllTasksFragment"
             android:exported="false" />
         <activity
-            android:name=".Tugas_kelas.HalamanUtama"
+            android:name=".Tugas_kelas.TugasActivity"
             android:exported="true" />
         <activity
             android:name=".Halaman_informasi.PrestasiFragment"
