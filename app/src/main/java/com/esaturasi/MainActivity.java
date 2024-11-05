@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new BerandaFragment());
                     return true;
                 } else if (itemId == R.id.nav_informasi) {
-                    loadFragment(new InfromasiFragment());
+                    loadFragment(new InformasiFragment());
                     return true;
                 } else if (itemId == R.id.nav_profile) {
                     loadFragment(new ProfilFragment());
