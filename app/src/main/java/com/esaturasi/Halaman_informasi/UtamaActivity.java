@@ -2,7 +2,6 @@ package com.esaturasi.Halaman_informasi;
 
 import android.os.Bundle;
 
-import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -17,7 +16,7 @@ public class UtamaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_utama);
+        setContentView(R.layout.fragment_informasi);
 
         ViewPager2 viewPager = findViewById(R.id.view_pager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
