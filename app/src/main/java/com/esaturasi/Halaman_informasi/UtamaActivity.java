@@ -37,9 +37,7 @@ public class UtamaActivity extends AppCompatActivity {
                     case 1:
                         tab.setText("Informasi");
                         break;
-                    case 2:
-                        tab.setText("Prestasi");
-                        break;
+
                 }
             }
         }).attach();

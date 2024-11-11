@@ -4,20 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="16dp">
 
     <!-- CardView item template -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        app:cardCornerRadius="35dp">
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp"
+            android:padding="16dp"
             android:gravity="center_vertical">
 
             <ImageView
@@ -25,7 +26,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/ic_dokumen"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="12dp"
+                android:contentDescription="Task Icon" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -40,7 +42,9 @@
                     android:text="Latihan soal pythagoras"
                     android:textColor="#000000"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
 
                 <TextView
                     android:id="@+id/taskSubject"
@@ -48,7 +52,9 @@
                     android:layout_height="wrap_content"
                     android:text="Matematika"
                     android:textColor="#6B7280"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
 
                 <TextView
                     android:id="@+id/taskDeadline"
@@ -56,7 +62,9 @@
                     android:layout_height="wrap_content"
                     android:text="Batas Waktu: 25 Oktober 2024, 23.59 WIB"
                     android:textColor="#6B7280"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
             </LinearLayout>
 
             <LinearLayout
@@ -74,7 +82,9 @@
                     android:paddingVertical="5dp"
                     android:text="Belum dikumpulkan"
                     android:textColor="#D97706"
-                    android:textSize="14sp"/>
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
 
                 <TextView
                     android:id="@+id/taskDetail"
@@ -82,7 +92,10 @@
                     android:layout_height="wrap_content"
                     android:text="Lihat Detail"
                     android:textColor="#3A6FF7"
-                    android:padding="8dp"/>
+                    android:padding="8dp"
+                    android:textSize="14sp"
+                    android:ellipsize="end"
+                    android:maxLines="1" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

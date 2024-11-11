@@ -29,7 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".Halaman_informasi.UtamaActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UI.SplashScreenActivity"
             android:exported="true">

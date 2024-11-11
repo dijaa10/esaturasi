@@ -20,8 +20,6 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
                 return new TerbaruFragment(); // Fragment untuk tab pertama
             case 1:
                 return new InformasiFragment(); // Fragment untuk tab kedua
-            case 2:
-                return new PrestasiFragment(); // Fragment untuk tab ketiga
             default:
                 return new TerbaruFragment(); // Default fragment jika posisi tidak dikenal
         }
