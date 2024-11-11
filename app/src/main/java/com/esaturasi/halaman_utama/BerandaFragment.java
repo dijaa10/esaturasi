@@ -45,7 +45,7 @@ public class BerandaFragment extends Fragment {
         recyclerView.setAdapter(jadwalAdapter);
 
         // Inisialisasi ImageView dan set OnClickListener
-        ImageView imageViewNavigate = view.findViewById(R.id.jadwal);
+        ImageView imageViewNavigate = view.findViewById(R.id.tugas);
         imageViewNavigate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

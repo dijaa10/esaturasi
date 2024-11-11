@@ -24,42 +24,43 @@
             android:layout_height="48dp"
             android:layout_weight="1"
             android:hint="Cari"
+            android:textColorHint="@color/black"
             android:background="@drawable/search_background_solid"
-            android:paddingStart="10dp"
+            android:paddingStart="20dp"
+            android:textSize="15sp"
             android:paddingEnd="10dp"
             android:inputType="text" />
 
         <ImageView
             android:id="@+id/icon_notification"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginStart="12dp"
             android:src="@drawable/ic_lonceng"
             android:contentDescription="Notifikasi" />
     </LinearLayout>
 
-    <!-- Tab Menu dengan Spasi Antar Tab -->
+    <!-- Tab Menu yang Sejajar -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:background="@color/white"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
-        app:tabMode="scrollable"
-        app:tabGravity="center"
-        app:tabIndicatorFullWidth="false">
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabMaxWidth="0dp"
+        app:tabIndicatorFullWidth="true">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_terbaru"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Terbaru" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_informasi"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Informasi" />
 

@@ -11,6 +11,7 @@
     <!-- TabLayout for Tabs -->
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabIndicatorColor="#3A6FF7"

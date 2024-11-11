@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
 
-import com.esaturasi.Halaman_informasi.InformasiFragment;
 import com.esaturasi.halaman_utama.BerandaFragment;
 import com.esaturasi.halaman_utama.InfromasiFragment;
 import com.esaturasi.halaman_utama.ProfilFragment;
