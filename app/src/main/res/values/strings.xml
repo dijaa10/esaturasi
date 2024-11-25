@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">E-saturasi</string>
+    <string name="show_password_desc">Tampilkan atau sembunyikan password</string>
+    <string name="login_image_desc">Gambar ilustrasi untuk halaman login</string>
 </resources>

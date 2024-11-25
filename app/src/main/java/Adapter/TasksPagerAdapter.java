@@ -1,9 +1,14 @@
-package com.esaturasi.Tugas_kelas;
+package Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.esaturasi.Fragment.AllTasksFragment;
+import com.esaturasi.Fragment.LateTasksFragment;
+import com.esaturasi.Fragment.PendingTasksFragment;
+import com.esaturasi.Fragment.SubmittedTasksFragment;
 
 public class TasksPagerAdapter extends FragmentStateAdapter {
 

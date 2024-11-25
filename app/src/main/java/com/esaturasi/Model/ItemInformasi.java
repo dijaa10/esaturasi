@@ -1,4 +1,4 @@
-package com.esaturasi.Halaman_informasi;
+package com.esaturasi.Model;
 
 public class ItemInformasi {
     private int img;

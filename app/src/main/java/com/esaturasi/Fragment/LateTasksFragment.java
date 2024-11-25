@@ -1,7 +1,7 @@
-package com.esaturasi.Tugas_kelas;
+package com.esaturasi.Fragment;
 
 import android.os.Bundle;
-import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.esaturasi.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllTasksFragment extends Fragment {
+import com.esaturasi.Model.Task;
+import com.esaturasi.R;
+
+import Adapter.TaskAdapter;
+
+public class LateTasksFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
@@ -32,8 +34,8 @@ public class AllTasksFragment extends Fragment {
 
         // Data contoh untuk ditampilkan
         taskList = new ArrayList<>();
-        taskList.add(new Task("Latihan soal pythagoras", "Matematika", "25 Oktober 2024, 23.59 WIB", "Belum dikumpulkan"));
-        taskList.add(new Task("Latihan soal aljabar", "Matematika", "26 Oktober 2024, 23.59 WIB", "Sudah dikumpulkan"));
+        taskList.add(new Task("Latihan soal pythagoras", "Matematika", "25 Oktober 2024, 23.59 WIB", "Terlambat"));
+        taskList.add(new Task("Latihan soal aljabar", "Matematika", "26 Oktober 2024, 23.59 WIB", "Terlambat"));
         taskList.add(new Task("Latihan soal fisika", "Fisika", "27 Oktober 2024, 23.59 WIB", "Terlambat"));
 
         taskAdapter = new TaskAdapter(taskList);
@@ -42,5 +44,3 @@ public class AllTasksFragment extends Fragment {
         return view;
     }
 }
-
-

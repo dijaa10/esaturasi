@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/abu"
-    tools:context=".ProfilActivity">
+    tools:context=".UI.ProfilActivity">
 
     <!-- Header Image (optional) -->
     <ImageView
@@ -27,7 +27,7 @@
         android:gravity="center_horizontal">
 
         <!-- Profil foto -->
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profile_image"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -35,11 +35,26 @@
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:padding="5dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp"
+            app:shapeAppearanceOverlay="@style/Profile"
+            app:strokeWidth="0dp"
+            app:strokeColor="@android:color/transparent"
+            android:contentDescription="Gambar profil"/>
+
+        <!-- Button Ubah Profil -->
+        <Button
+            android:id="@+id/btn_ubah_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ubah Profil"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:backgroundTint="@color/blue"
+            android:textColor="@android:color/white"/>
 
         <!-- Nama -->
         <TextView
-            android:id="@+id/profile_name"
+            android:id="@+id/namaTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dwi Prikitw"
@@ -50,7 +65,7 @@
 
         <!-- nomor siswa -->
         <TextView
-            android:id="@+id/profile_phone"
+            android:id="@+id/nisnTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0056144236"
@@ -58,7 +73,7 @@
             android:gravity="center"
             android:layout_marginBottom="24dp"/>
 
-        <!--jurusan-->
+        <!-- Kartu Jurusan -->
         <androidx.cardview.widget.CardView
             android:layout_width="350dp"
             android:layout_height="150dp"
@@ -116,6 +131,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/kelasTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
@@ -131,7 +147,7 @@
 
 
         </androidx.cardview.widget.CardView>
-        <!--PASSWORD-->
+
         <androidx.cardview.widget.CardView
             android:layout_width="340dp"
             android:layout_height="112dp"
@@ -212,7 +228,7 @@
 
 
         </androidx.cardview.widget.CardView>
-
+        <!-- Sisanya tetap sama, tidak ada perubahan -->
 
     </LinearLayout>
 </LinearLayout>

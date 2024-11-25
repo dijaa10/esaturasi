@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment;
 
 import android.view.MenuItem;
 
-import com.esaturasi.halaman_utama.BerandaFragment;
-import com.esaturasi.halaman_utama.InfromasiFragment;
-import com.esaturasi.halaman_utama.ProfilFragment;
+import com.esaturasi.Fragment.BerandaFragment;
+import com.esaturasi.Fragment.InfromasiFragment;
+import com.esaturasi.Fragment.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {

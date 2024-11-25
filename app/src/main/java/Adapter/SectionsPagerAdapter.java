@@ -1,9 +1,12 @@
-package com.esaturasi.Halaman_informasi;
+package Adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+import com.esaturasi.Fragment.InformasiFragment;
+import com.esaturasi.Fragment.TerbaruFragment;
 
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 

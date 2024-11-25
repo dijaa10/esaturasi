@@ -1,4 +1,4 @@
-package com.esaturasi.Tugas_kelas;
+package com.esaturasi.Fragment;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.esaturasi.Model.Task;
 import com.esaturasi.R;
+
+import Adapter.TaskAdapter;
 
 
 public class SubmittedTasksFragment extends Fragment {

@@ -11,6 +11,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 
 import com.esaturasi.R;
 
+import Adapter.SectionsPagerAdapter;
+
 public class UtamaActivity extends AppCompatActivity {
 
     @Override

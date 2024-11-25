@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+
     <application
         android:allowBackup="true"
+        android:usesCleartextTraffic="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -13,19 +21,19 @@
         android:theme="@style/Theme.Esaturasi"
         tools:targetApi="31">
         <activity
-            android:name=".Tugas_kelas.AllTasksFragment"
+            android:name=".Mata_Pelajaran.MapelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Fragment.AllTasksFragment"
             android:exported="false" />
         <activity
             android:name=".Tugas_kelas.TugasActivity"
-            android:exported="true" />
-        <activity
-            android:name=".Halaman_informasi.PrestasiFragment"
             android:exported="false" />
         <activity
-            android:name=".Halaman_informasi.InformasiFragment"
+            android:name=".Fragment.InformasiFragment"
             android:exported="false" />
         <activity
-            android:name=".Halaman_informasi.TerbaruFragment"
+            android:name=".Fragment.TerbaruFragment"
             android:exported="false" />
         <activity
             android:name=".Halaman_informasi.UtamaActivity"
@@ -39,7 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".UI.Start1Activity"
             android:exported="false" />
@@ -59,13 +66,13 @@
             android:name=".UI.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".halaman_utama.BerandaFragment"
+            android:name=".Fragment.BerandaFragment"
             android:exported="false" />
         <activity
-            android:name=".halaman_utama.InfromasiFragment"
+            android:name=".Fragment.InfromasiFragment"
             android:exported="false" />
         <activity
-            android:name=".halaman_utama.ProfilFragment"
+            android:name=".Fragment.ProfilFragment"
             android:exported="false" />
 
         <meta-data

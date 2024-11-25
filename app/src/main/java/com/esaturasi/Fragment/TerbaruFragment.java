@@ -1,4 +1,4 @@
-package com.esaturasi.Halaman_informasi;
+package com.esaturasi.Fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

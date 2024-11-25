@@ -1,129 +1,125 @@
 package com.esaturasi.Jadwal_kelas;
 
-import android.graphics.Color;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.esaturasi.API.ApiService;
+import Adapter.DaysPagerAdapter;
+import com.esaturasi.Model.ApiResponse;
+import com.esaturasi.Model.ScheduleItem;
 import com.esaturasi.R;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.gson.Gson;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
-import Fungsi.ScheduleItem;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JadwalActivity extends AppCompatActivity {
 
-    private TextView tabSenin, tabSelasa, tabRabu, tabKamis, tabJumat;
+    private List<List<ScheduleItem>> weeklySchedule = new ArrayList<>();
+    private DaysPagerAdapter pagerAdapter;
+    private ViewPager2 viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jadwal); // Pastikan sesuai dengan nama layout Anda
+        setContentView(R.layout.activity_jadwal);
 
-        // Inisialisasi TextView untuk setiap hari
-        tabSenin = findViewById(R.id.tab_senin);
-        tabSelasa = findViewById(R.id.tab_selasa);
-        tabRabu = findViewById(R.id.tab_rabu);
-        tabKamis = findViewById(R.id.tab_kamis);
-        tabJumat = findViewById(R.id.tab_jumat);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager);
 
-        // Set onClickListener untuk setiap TextView hari
-        tabSenin.setOnClickListener(v -> {
-            displayScheduleForDay("Senin");
-            highlightSelectedDay(tabSenin);
-        });
+        // Initialize empty data for all days (Senin - Jumat)
+        for (int i = 0; i < 5; i++) {
+            weeklySchedule.add(new ArrayList<>());
+        }
 
-        tabSelasa.setOnClickListener(v -> {
-            displayScheduleForDay("Selasa");
-            highlightSelectedDay(tabSelasa);
-        });
+        // Set up the adapter for ViewPager2
+        pagerAdapter = new DaysPagerAdapter(this, weeklySchedule);
+        viewPager.setAdapter(pagerAdapter);
 
-        tabRabu.setOnClickListener(v -> {
-            displayScheduleForDay("Rabu");
-            highlightSelectedDay(tabRabu);
-        });
+        // Connect TabLayout with ViewPager2
+        String[] days = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat"};
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> tab.setText(days[position])).attach();
 
-        tabKamis.setOnClickListener(v -> {
-            displayScheduleForDay("Kamis");
-            highlightSelectedDay(tabKamis);
-        });
-
-        tabJumat.setOnClickListener(v -> {
-            displayScheduleForDay("Jumat");
-            highlightSelectedDay(tabJumat);
-        });
-
-        // Default tampilan awal untuk hari Senin
-        displayScheduleForDay("Senin");
-        highlightSelectedDay(tabSenin);
+        // Load schedule data
+        loadWeeklySchedule();
     }
 
-    private void displayScheduleForDay(String day) {
-        LinearLayout scheduleContainer = findViewById(R.id.schedule_container);
-        scheduleContainer.removeAllViews(); // Bersihkan tampilan sebelumnya
+    private void loadWeeklySchedule() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://10.0.2.2/esaturasi_web/") // Sesuaikan URL server Anda
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        List<ScheduleItem> scheduleForDay = getScheduleForDay(day);
+        ApiService apiService = retrofit.create(ApiService.class);
 
-        for (ScheduleItem item : scheduleForDay) {
-            View scheduleView = LayoutInflater.from(this).inflate(R.layout.item_schedule, scheduleContainer, false);
+        // Retrieve kd_kelas from SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("UserSession", MODE_PRIVATE);
+        String kdKelas = prefs.getString("kd_kelas", null);
 
-            TextView subjectName = scheduleView.findViewById(R.id.subject_name);
-            TextView time = scheduleView.findViewById(R.id.subject_time);
-            TextView teacher = scheduleView.findViewById(R.id.subject_teacher);
-            ImageView profileImage = scheduleView.findViewById(R.id.profile_image);
-            ImageView materialImage = scheduleView.findViewById(R.id.material_image);
+        if (kdKelas == null) {
+            Toast.makeText(this, "Kode kelas tidak ditemukan!", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-            // Isi data ke tampilan
-            subjectName.setText(item.getSubjectName());
-            time.setText(item.getTime());
-            teacher.setText(item.getTeacher());
-            profileImage.setImageResource(item.getProfileImageResId());
-            materialImage.setImageResource(item.getMaterialImageResId());
+        String[] days = {"Senin", "Selasa", "Rabu", "Kamis", "Jumat"};
 
-            scheduleContainer.addView(scheduleView);
+        for (String currentDay : days) {
+            Log.d("DEBUG_API_CALL", "KD_KELAS: " + kdKelas + ", HARI: " + currentDay);
+
+            apiService.getJadwal(kdKelas, currentDay).enqueue(new Callback<ApiResponse<List<ScheduleItem>>>() {
+                @Override
+                public void onResponse(Call<ApiResponse<List<ScheduleItem>>> call, Response<ApiResponse<List<ScheduleItem>>> response) {
+                    Log.d("DEBUG_RESPONSE", "Response untuk " + currentDay + ": " + new Gson().toJson(response.body()));
+
+                    if (response.isSuccessful() && response.body() != null && "success".equals(response.body().getStatus())) {
+                        List<ScheduleItem> daySchedule = response.body().getData();
+
+                        if (daySchedule != null) {
+                            int dayIndex = getDayIndex(currentDay);
+                            if (dayIndex != -1) {
+                                weeklySchedule.set(dayIndex, daySchedule);
+                                pagerAdapter.notifyDataSetChanged();
+                            }
+                        }
+                    } else {
+                        Log.e("API_ERROR", "Gagal memuat jadwal untuk " + currentDay);
+                        Toast.makeText(JadwalActivity.this, "Gagal memuat jadwal untuk " + currentDay, Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ApiResponse<List<ScheduleItem>>> call, Throwable t) {
+                    Log.e("API_FAILURE", "Kesalahan koneksi: " + t.getMessage());
+                    Toast.makeText(JadwalActivity.this, "Kesalahan koneksi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 
-    // Fungsi untuk mendapatkan jadwal sesuai hari
-    private List<ScheduleItem> getScheduleForDay(String day) {
+    private int getDayIndex(String day) {
         switch (day) {
-            case "Senin":
-                return Arrays.asList(
-                        new ScheduleItem("Bahasa Indonesia", "07.00 - 08.30", "Chodijah", R.drawable.ic_profildija, R.drawable.ic_bahasa),
-                        new ScheduleItem("Matematika", "10.00 - 11.30", "Gilang Bayu", R.drawable.ic_person1, R.drawable.ic_mtk)
-                );
-            case "Selasa":
-                return Arrays.asList(
-                        new ScheduleItem("Pemrograman Web", "08.00 - 09.30", "Bachtiar", R.drawable.ic_person1, R.drawable.ic_pemrograman),
-                        new ScheduleItem("Beladiri", "10.00 - 11.30", "Dwi Srikandi", R.drawable.ic_profildwi, R.drawable.ic_beladiri)
-                );
-            case "Rabu":
-                return Arrays.asList(
-                        new ScheduleItem("Sejarah Indonesia", "08.00 - 09.30", "Naela Zahwa", R.drawable.ic_profilnaela, R.drawable.ic_sejarah)
-                );
-            // Tambahkan data jadwal untuk hari lainnya
-            default:
-                return new ArrayList<>();
+            case "Senin": return 0;
+            case "Selasa": return 1;
+            case "Rabu": return 2;
+            case "Kamis": return 3;
+            case "Jumat": return 4;
+            default: return -1; // Invalid day
         }
-    }
-
-    // Fungsi untuk menyorot hari yang dipilih
-    private void highlightSelectedDay(TextView selectedTab) {
-        // Reset semua tab menjadi warna default (putih)
-        tabSenin.setTextColor(Color.BLACK);
-        tabSelasa.setTextColor(Color.BLACK);
-        tabRabu.setTextColor(Color.BLACK);
-        tabKamis.setTextColor(Color.BLACK);
-        tabJumat.setTextColor(Color.BLACK);
-
-        // Sorot tab yang dipilih dengan warna biru
-        selectedTab.setTextColor(Color.WHITE);
     }
 }
