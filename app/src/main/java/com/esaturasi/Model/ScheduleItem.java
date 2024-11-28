@@ -75,9 +75,10 @@ public class ScheduleItem {
     }
 
     public String getFotoMapelPerkelas() {
-        return fotoMapelPerkelas;
+        return "http://10.0.2.2/esaturasi_web/page/admin/uploads/foto_mapel/" + fotoMapelPerkelas;
     }
 
+    // Setter untuk fotoMapelPerkelas
     public void setFotoMapelPerkelas(String fotoMapelPerkelas) {
         this.fotoMapelPerkelas = fotoMapelPerkelas;
     }

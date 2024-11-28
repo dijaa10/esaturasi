@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".Mata_Pelajaran.MapelActivity">
+    tools:context=".UI.BabActivity">
 
     <!-- Title Bar -->
     <RelativeLayout
@@ -28,11 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="15dp"
             android:text="Mata Pelajaran"
             android:textColor="@android:color/white"
-            android:textSize="18sp" />
-
+            android:textSize="20sp" />
         <TextView
             android:id="@+id/subtitle"
             android:layout_width="wrap_content"

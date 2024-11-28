@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.MenuItem;
 
 import com.esaturasi.Fragment.BerandaFragment;
-import com.esaturasi.Fragment.InfromasiFragment;
+import com.esaturasi.Fragment.InformasiFragment;
 import com.esaturasi.Fragment.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new BerandaFragment());
                     return true;
                 } else if (itemId == R.id.nav_informasi) {
-                    loadFragment(new InfromasiFragment());
+                    loadFragment(new InformasiFragment());
                     return true;
                 } else if (itemId == R.id.nav_profile) {
                     loadFragment(new ProfilFragment());

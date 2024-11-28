@@ -1,5 +1,6 @@
 package com.esaturasi.API;
 
+import com.esaturasi.Model.InformasiModel;
 import com.esaturasi.Model.LoginResponse;
 import com.esaturasi.Model.MapelModel;
 import com.esaturasi.Model.ScheduleItem;
@@ -35,6 +36,11 @@ public interface ApiService {
     @GET("page/api/get_tugas.php") // Ganti dengan nama endpoint API Anda
     Call<List<Task>> getTasks(@Query("nisn") String nisn);
 
+    @GET("page/api/get_informasi.php")
+    Call<ApiResponse<List<InformasiModel>>> getInformasi();
+
+    @GET("path/to/terbaru-endpoint")
+    Call<ApiResponse<List<InformasiModel>>> getTerbaruData();
 }
 
 

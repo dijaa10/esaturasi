@@ -10,6 +10,9 @@ import com.esaturasi.Fragment.TerbaruFragment;
 
 public class SectionsPagerAdapter extends FragmentStateAdapter {
 
+    private static final int TAB_TERBARU = 0;
+    private static final int TAB_INFORMASI = 1;
+
     public SectionsPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -17,20 +20,18 @@ public class SectionsPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
-        // Mengembalikan fragment yang sesuai berdasarkan posisi
         switch (position) {
-            case 0:
-                return new TerbaruFragment(); // Fragment untuk tab pertama
-            case 1:
-                return new InformasiFragment(); // Fragment untuk tab kedua
+            case TAB_TERBARU:
+                return new TerbaruFragment(); // Tab pertama
+            case TAB_INFORMASI:
+                return new InformasiFragment(); // Tab kedua
             default:
-                return new TerbaruFragment(); // Default fragment jika posisi tidak dikenal
+                throw new IllegalStateException("Invalid position: " + position);
         }
     }
 
     @Override
     public int getItemCount() {
-        return 3; // Total jumlah tab atau halaman
+        return 2; // Total jumlah tab
     }
 }
-

@@ -211,12 +211,12 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/jadwal"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:onClick="jadwal"
                         android:layout_gravity="center"
-                        android:id="@+id/jadwal"
                         android:contentDescription="@string/view_jadwal"
+                        android:onClick="jadwal"
                         android:src="@drawable/ic_jamnew" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -287,6 +287,8 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/kalender"
+                        android:onClick="kalender"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/ic_kalendernew" />

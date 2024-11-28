@@ -1,56 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="8dp"
     tools:context=".Fragment.InformasiFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="8dp"
-        android:clipToPadding="false"/>
-
+    <!-- CardView untuk setiap item -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
 
+        <!-- Konten di dalam CardView -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="16dp">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:scaleType="centerCrop"
-                android:id="@+id/img"
-                android:src="@drawable/ic_sample1" />
-
+            <!-- Judul Pengumuman -->
             <TextView
+                android:id="@+id/judul_pengumuman"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Meriah dan Penuh Haru, Wisuda Siswa SMK Negeri 1"
-                android:textColor="@color/black"
-                android:id="@+id/judul"
+                android:text="Judul Pengumuman"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#000" />
+
+            <!-- Tanggal Pengumuman -->
+            <TextView
+                android:id="@+id/tgl_pengumuman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal: 2024-11-14"
+                android:textSize="14sp"
+                android:textColor="#555"
+                android:layout_marginTop="4dp" />
+
+            <!-- Deskripsi Pengumuman -->
+            <TextView
+                android:id="@+id/deskripsi_pengumuman"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi pengumuman akan muncul di sini."
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textColor="#333"
+                android:layout_marginTop="8dp" />
 
-            <TextView
+            <!-- Gambar Pengumuman -->
+            <ImageView
+                android:id="@+id/file_pengumuman"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:id="@+id/jam"
-                android:text="Informasi • 30 menit yang lalu"
-                android:textColor="@color/blue"
-                android:textSize="14sp" />
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-</RelativeLayout>
+</LinearLayout>
