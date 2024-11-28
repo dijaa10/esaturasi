@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".Calender.KalenderActivity">
+
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/blue"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="8dp">
+
+        <!-- Tombol Kiri untuk Navigasi Bulan -->
+        <ImageButton
+            android:id="@+id/prev_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_left_arrow"
+            android:contentDescription="Previous Month"
+            android:background="@android:color/transparent" />
+
+        <!-- Nama Bulan dan Tahun -->
+        <TextView
+            android:id="@+id/month_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="January 2024"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp" />
+
+        <!-- Tombol Kanan untuk Navigasi Bulan -->
+        <ImageButton
+            android:id="@+id/next_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_right_arrow"
+            android:contentDescription="Next Month"
+            android:background="@android:color/transparent" />
+    </LinearLayout>
+
+    <!-- Kalender Grid (GridView atau RecyclerView untuk Tanggal) -->
+    <GridView
+        android:id="@+id/grid_calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:layout_marginTop="16dp"
+        android:numColumns="7"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
+
+</RelativeLayout>

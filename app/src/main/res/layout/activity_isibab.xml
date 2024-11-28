@@ -1,0 +1,214 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".UI.IsibabActivity">
+
+    <!-- Title Bar -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@color/blue">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="92dp"
+            android:layout_height="57dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="-20dp"
+            android:layout_marginTop="10dp"
+            android:padding="16dp"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:text="Ideologi Negara"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/notification_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:padding="16dp"
+            android:src="@drawable/ic_lonceng" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@android:color/white">
+
+            <!-- Gambar Materi -->
+            <ImageView
+                android:id="@+id/ivMateri"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_materi"
+                 />
+
+            <!-- Teks Materi Bab -->
+            <TextView
+                android:id="@+id/tvMateriBab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Materi Bab 1"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+<!--    pretest-->
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@android:color/white">
+
+            <!-- Gambar Materi -->
+            <ImageView
+                android:id="@+id/pretest"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_pretest"
+                />
+
+            <!-- Teks Materi Bab -->
+            <TextView
+                android:id="@+id/nmpretest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Pre-Test"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@android:color/white">
+
+            <!-- Gambar Materi -->
+            <ImageView
+                android:id="@+id/tugas"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_tugas1"
+                />
+
+            <!-- Teks Materi Bab -->
+            <TextView
+                android:id="@+id/nmtugas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Tugas"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="20dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:background="@android:color/white">
+
+            <!-- Gambar Materi -->
+            <ImageView
+                android:id="@+id/posttest"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_postest"
+                />
+
+            <!-- Teks Materi Bab -->
+            <TextView
+                android:id="@+id/nmpostetst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Post-Test"
+                android:textSize="17sp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@android:color/black"
+                android:layout_gravity="center_vertical" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>
