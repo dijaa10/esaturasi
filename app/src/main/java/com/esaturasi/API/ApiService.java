@@ -1,5 +1,6 @@
 package com.esaturasi.API;
 
+import com.esaturasi.Model.BabModel;
 import com.esaturasi.Model.InformasiModel;
 import com.esaturasi.Model.LoginResponse;
 import com.esaturasi.Model.MapelModel;
@@ -41,6 +42,9 @@ public interface ApiService {
 
     @GET("path/to/terbaru-endpoint")
     Call<ApiResponse<List<InformasiModel>>> getTerbaruData();
+
+    @GET("page/api/get_bab.php")
+    Call<ApiResponse<List<BabModel>>> getBab();
 }
 
 
