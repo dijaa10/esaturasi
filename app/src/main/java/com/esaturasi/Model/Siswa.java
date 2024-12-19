@@ -12,7 +12,9 @@ public class Siswa {
     @SerializedName("kd_kelas")
     private String kdKelas;
 
-    // Getters and Setters
+    @SerializedName("foto_profil_siswa")
+    private String fotoProfilSiswa;
+
     public String getNisn() {
         return nisn;
     }
@@ -36,4 +38,13 @@ public class Siswa {
     public void setKdKelas(String kdKelas) {
         this.kdKelas = kdKelas;
     }
+
+    public String getFotoProfilSiswa() {
+        return "http://10.0.2.2/esaturasi_web/page/admin/uploads/profilesiswa/" + fotoProfilSiswa;
+    }
+
+    public void setFotoProfilSiswa(String fotoProfilSiswa) {
+        this.fotoProfilSiswa = fotoProfilSiswa;
+    }
 }
+

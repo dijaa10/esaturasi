@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide;
 import com.esaturasi.Model.ScheduleItem;
 import com.esaturasi.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder> {
@@ -20,7 +21,7 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
     private List<ScheduleItem> scheduleList;
 
     public JadwalAdapter(List<ScheduleItem> scheduleList) {
-        this.scheduleList = scheduleList;
+        this.scheduleList = (scheduleList != null) ? scheduleList : new ArrayList<>();
     }
 
     @NonNull
@@ -40,22 +41,20 @@ public class JadwalAdapter extends RecyclerView.Adapter<JadwalAdapter.ViewHolder
         holder.timeTextView.setText(item.getDariJam() + " - " + item.getSampaiJam());
         holder.teacherNameTextView.setText(item.getNamaGuru());
 
-        // Muat gambar dari URL menggunakan Glide untuk foto guru
-        Glide.with(holder.itemView.getContext())
-                .load("http://10.0.2.2/esaturasi_web/page/admin/uploads/profile/3510110112030004.png" + item.getFotoProfilGuru())
 
+        Glide.with(holder.itemView.getContext())
+                .load( item.getFotoProfilGuru())
                 .into(holder.teacherImageView);
 
-        // Muat gambar dari URL menggunakan Glide untuk ikon mapel (foto mapel per kelas)
-        Glide.with(holder.itemView.getContext())
-                .load("http://10.0.2.2/esaturasi_web/page/admin/uploads/foto_mapel/24RP004.jpeg" + item.getFotoMapelPerkelas())
 
+        Glide.with(holder.itemView.getContext())
+                .load(item.getFotoMapelPerkelas())
                 .into(holder.iconImageView);
     }
 
     @Override
     public int getItemCount() {
-        return scheduleList == null ? 0 : scheduleList.size();
+        return scheduleList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

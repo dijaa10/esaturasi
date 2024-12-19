@@ -48,6 +48,9 @@ public class LoginResponse {
         @SerializedName("kd_kelas")
         private String kdKelas;
 
+        @SerializedName("foto_profil_siswa")
+        private String fotoProfilSiswa;
+
         public String getNisn() {
             return nisn;
         }
@@ -70,6 +73,14 @@ public class LoginResponse {
 
         public void setKdKelas(String kdKelas) {
             this.kdKelas = kdKelas;
+        }
+
+        public String getFotoProfilSiswa() {
+            return  fotoProfilSiswa;
+        }
+
+        public void setFotoProfilSiswa(String fotoProfilSiswa) {
+            this.fotoProfilSiswa = fotoProfilSiswa;
         }
     }
 }

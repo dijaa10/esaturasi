@@ -43,8 +43,6 @@ public class InformasiAdapter extends RecyclerView.Adapter<InformasiAdapter.View
         if (informasi.getGambar() != null && !informasi.getGambar().isEmpty()) {
             Glide.with(holder.itemView.getContext())
                     .load(informasi.getGambar())
-                    .placeholder(R.drawable.ic_sample1)
-                    .error(R.drawable.ic_sample1)
                     .into(holder.gambar);
         } else {
             holder.gambar.setImageResource(R.drawable.ic_sample1);

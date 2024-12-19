@@ -1,5 +1,6 @@
 package com.esaturasi.Mata_Pelajaran;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -13,14 +14,15 @@ import com.esaturasi.Model.MapelModel;
 import com.esaturasi.API.ApiClient;
 import com.esaturasi.API.ApiService;
 import com.esaturasi.R;
+import com.esaturasi.UI.BabActivity;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 import Adapter.MapelAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import java.util.List;
 
 public class MapelActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -60,6 +62,18 @@ public class MapelActivity extends AppCompatActivity {
                         // Set adapter RecyclerView
                         adapter = new MapelAdapter(MapelActivity.this, mapelList);
                         recyclerView.setAdapter(adapter);
+
+                        // Menambahkan listener klik pada setiap item mapel
+                        adapter.setOnItemClickListener(new MapelAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(MapelModel mapel) {
+                                // Mengirimkan nama mapel yang dipilih ke BabActivity
+                                Intent intent = new Intent(MapelActivity.this, BabActivity.class);
+                                intent.putExtra("nama_mapel", mapel.getNamaMapel());
+                                startActivity(intent);
+                            }
+                        });
+
                     } else {
                         Toast.makeText(MapelActivity.this, apiResponse.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -76,6 +90,5 @@ public class MapelActivity extends AppCompatActivity {
                 Toast.makeText(MapelActivity.this, "Kesalahan koneksi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }

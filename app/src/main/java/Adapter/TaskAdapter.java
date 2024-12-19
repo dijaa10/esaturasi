@@ -4,10 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.esaturasi.Model.Task;
 import com.esaturasi.R;
+
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
@@ -21,24 +24,31 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        // Inflating the layout for each item
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task, parent, false);
         return new TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        if (taskList != null && position < taskList.size()) {
+        if (taskList != null && !taskList.isEmpty() && position < taskList.size()) {
             Task task = taskList.get(position);
-            holder.taskTitle.setText(task.getTitle());
-            holder.taskSubject.setText(task.getSubject());
-            holder.taskDeadline.setText(task.getDeadline());
+
+            // Set the task data into the views
+            holder.taskTitle.setText(task.getTaskId());  // Menampilkan task_id
+            holder.taskSubject.setText(task.getSubject());  // Menampilkan subject
+
+            // Memformat tanggal deadline jika perlu
+            holder.taskDeadline.setText(task.getDeadline());  // Menampilkan deadline
+
+            // Menampilkan status tugas
             holder.taskStatus.setText(task.getStatus());
         }
     }
 
     @Override
     public int getItemCount() {
-        return taskList == null ? 0 : taskList.size();
+        return taskList != null ? taskList.size() : 0;
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -53,4 +63,3 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
     }
 }
-

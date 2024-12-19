@@ -19,7 +19,7 @@ import com.esaturasi.API.ApiService;
 import com.esaturasi.Model.ApiResponse;
 import com.esaturasi.Model.ScheduleItem;
 import com.esaturasi.R;
-import com.google.gson.Gson;
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -43,87 +43,74 @@ public class BerandaFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_halaman, container, false);
-
-        // Inisialisasi SharedPreferences
         prefs = requireActivity().getSharedPreferences("UserSession", requireContext().MODE_PRIVATE);
-
 
         String nama = prefs.getString("nama_siswa", "Nama tidak ditemukan");
         String nisn = prefs.getString("nisn", "NISN tidak ditemukan");
         String kdKelas = prefs.getString("kd_kelas", null);
+        String fotoProfilSiswa = prefs.getString("foto_profil_siswa", null);
 
-        // Bind data profil ke layout
-        bindProfileData(view, nama, nisn, kdKelas);
+        bindProfileData(view, nama, nisn, kdKelas, fotoProfilSiswa);
 
-        // Setup RecyclerView
         recyclerView = view.findViewById(R.id.recycler_viewhalaman);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         jadwalAdapter = new JadwalAdapter(scheduleList);
         recyclerView.setAdapter(jadwalAdapter);
 
-
         if (kdKelas != null) {
-            loadJadwal(kdKelas);
+            String hari = new SimpleDateFormat("EEEE", new Locale("id", "ID")).format(new Date());
+            loadJadwal(kdKelas, hari);
+            Log.d("JADWAL_DEBUG", "Format Hari: " + hari);
         } else {
             Toast.makeText(requireContext(), "Kode kelas tidak ditemukan", Toast.LENGTH_SHORT).show();
         }
 
-
         setTodayDate(view);
-
-
         setUpButtonListeners(view);
 
         return view;
     }
 
-    private void bindProfileData(View view, String nama, String nisn, String kdKelas) {
-
+    private void bindProfileData(View view, String nama, String nisn, String kdKelas, String fotoProfilSiswa) {
         TextView namaTextView = view.findViewById(R.id.namaTextView);
         TextView nisnTextView = view.findViewById(R.id.nisnTextView);
         TextView kelasTextView = view.findViewById(R.id.kelasTextView);
+        ImageView fotoProfilImageView = view.findViewById(R.id.fotoProfilImageView);
 
         namaTextView.setText(nama);
         nisnTextView.setText(nisn);
         kelasTextView.setText(kdKelas != null ? kdKelas : "Kelas tidak ditemukan");
+
+        if (fotoProfilSiswa != null && !fotoProfilSiswa.isEmpty()) {
+            Glide.with(requireContext())
+                    .load(fotoProfilSiswa)
+                    .into(fotoProfilImageView);
+        }
     }
 
-    private void loadJadwal(String kdKelas) {
-        // Konfigurasi Retrofit untuk API
+    private void loadJadwal(String kdKelas, String hari) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2/esaturasi_web/") // Ganti URL sesuai dengan API Anda
+                .baseUrl("http://10.0.2.2/esaturasi_web/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-
-        String hari = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(new Date());
-
-        // Debugging log untuk memastikan data yang dikirim
-        Log.d("DEBUG_API_CALL", "Mengirimkan kode kelas: " + kdKelas + ", Hari: " + hari);
-
+        Log.d("DEBUG_API_CALL", "KD_KELAS: " + kdKelas + ", Hari: " + hari);
 
         apiService.getJadwal(kdKelas, hari).enqueue(new Callback<ApiResponse<List<ScheduleItem>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<ScheduleItem>>> call, Response<ApiResponse<List<ScheduleItem>>> response) {
-
-                Log.d("DEBUG_RESPONSE", "Response: " + new Gson().toJson(response.body()));
-
                 if (response.isSuccessful() && response.body() != null && "success".equals(response.body().getStatus())) {
                     List<ScheduleItem> data = response.body().getData();
-
-
                     Log.d("DEBUG_API_RESPONSE", "Jumlah data jadwal yang diterima: " + (data != null ? data.size() : 0));
-
                     if (data != null && !data.isEmpty()) {
                         scheduleList.clear();
                         scheduleList.addAll(data);
                         jadwalAdapter.notifyDataSetChanged();
                     } else {
-                        Log.d("DEBUG_API_RESPONSE", "Tidak ada data jadwal untuk kelas dan hari ini");
+                        Log.d("DEBUG_API_RESPONSE", "Tidak ada data jadwal untuk hari ini");
                         Toast.makeText(requireContext(), "Tidak ada data jadwal untuk hari ini", Toast.LENGTH_SHORT).show();
                     }
                 } else {
@@ -142,62 +129,22 @@ public class BerandaFragment extends Fragment {
 
     private void setTodayDate(View view) {
         TextView textViewDate = view.findViewById(R.id.textViewDate);
-
-        // Format tanggal hari ini
         String currentDate = new SimpleDateFormat("EEEE, dd MMMM yyyy", Locale.getDefault()).format(new Date());
-
-        // Set tanggal ke TextView
         textViewDate.setText(currentDate);
     }
 
     private void setUpButtonListeners(View view) {
-
-        ImageView jadwalImageView = view.findViewById(R.id.jadwal);
-        jadwalImageView.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.esaturasi.Jadwal_kelas.JadwalActivity.class);
-            startActivity(intent);
-        });
-
-
-        ImageView tugasImageView = view.findViewById(R.id.tugas);
-        tugasImageView.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.esaturasi.Tugas_kelas.TugasActivity.class);
-            startActivity(intent);
-        });
-
-
-        ImageView mapelImageview = view.findViewById(R.id.mapel);
-        mapelImageview.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.esaturasi.Mata_Pelajaran.MapelActivity.class);
-            startActivity(intent);
-        });
-
-
-        ImageView kalenderImageview = view.findViewById(R.id.kalender);
-        kalenderImageview.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.esaturasi.Calender.KalenderActivity.class);
-            startActivity(intent);
-        });
+        setupButtonListener(view, R.id.jadwal, com.esaturasi.Jadwal_kelas.JadwalActivity.class);
+        setupButtonListener(view, R.id.tugas, com.esaturasi.Tugas_kelas.TugasActivity.class);
+        setupButtonListener(view, R.id.mapel, com.esaturasi.Mata_Pelajaran.MapelActivity.class);
+        setupButtonListener(view, R.id.kalender, com.esaturasi.Calender.KalenderActivity.class);
     }
 
-
-    public void jadwal(View view) {
-        Intent intent = new Intent(requireContext(), com.esaturasi.Jadwal_kelas.JadwalActivity.class);
-        startActivity(intent);
-    }
-
-    public void tugas(View view) {
-        Intent intent = new Intent(requireContext(), com.esaturasi.Tugas_kelas.TugasActivity.class);
-        startActivity(intent);
-    }
-
-    public void mapel(View view) {
-        Intent intent = new Intent(requireContext(), com.esaturasi.Mata_Pelajaran.MapelActivity.class);
-        startActivity(intent);
-    }
-
-    public void kalender(View view) {
-        Intent intent = new Intent(requireContext(), com.esaturasi.Calender.KalenderActivity.class);
-        startActivity(intent);
+    private void setupButtonListener(View view, int buttonId, Class<?> activityClass) {
+        ImageView button = view.findViewById(buttonId);
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(requireContext(), activityClass);
+            startActivity(intent);
+        });
     }
 }

@@ -72,13 +72,10 @@ public class InformasiModel {
         this.deskripsi = deskripsi;
     }
 
-    /**
-     * Metode untuk mendapatkan URL gambar dari field 'file'.
-     * Anda bisa menambahkan logika tambahan jika diperlukan.
-     */
+
     public String getGambar() {
         // Contoh: jika 'file' hanya nama file, tambahkan base URL
-        String baseUrl = "http://10.0.2.2/esaturasi_web/page/admin/uploads/pengumuman/P1411202401.jpg";
+        String baseUrl = "http://10.0.2.2/esaturasi_web/page/admin/uploads/pengumuman/";
         return file != null && !file.isEmpty() ? baseUrl + file : "";
     }
 

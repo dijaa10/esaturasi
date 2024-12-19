@@ -12,29 +12,40 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.esaturasi.Model.ScheduleItem;
 import com.esaturasi.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Adapter.JadwalAdapter;
-
 public class ScheduleFragment extends Fragment {
 
+    private RecyclerView recyclerView;
+    private JadwalAdapter jadwalAdapter;
     private List<ScheduleItem> scheduleList;
 
+    // Constructor menerima data jadwal
     public ScheduleFragment(List<ScheduleItem> scheduleList) {
-        this.scheduleList = scheduleList;
+        this.scheduleList = scheduleList != null ? scheduleList : new ArrayList<>();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_schedule, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_schedule, container, false);
 
-        RecyclerView recyclerView = rootView.findViewById(R.id.recyclerView);
+        // Setup RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        JadwalAdapter adapter = new JadwalAdapter(scheduleList);
-        recyclerView.setAdapter(adapter);
 
-        return rootView;
+        jadwalAdapter = new JadwalAdapter(scheduleList);
+        recyclerView.setAdapter(jadwalAdapter);
+
+        return view;
+    }
+
+    // Method untuk memperbarui data dan memberi tahu adapter
+    public void setScheduleList(List<ScheduleItem> scheduleList) {
+        this.scheduleList = scheduleList;
+        if (jadwalAdapter != null) {
+            jadwalAdapter.notifyDataSetChanged();  // Memberi tahu adapter agar memperbarui tampilan
+        }
     }
 }
-

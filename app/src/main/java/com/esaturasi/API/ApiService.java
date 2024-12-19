@@ -4,8 +4,9 @@ import com.esaturasi.Model.BabModel;
 import com.esaturasi.Model.InformasiModel;
 import com.esaturasi.Model.LoginResponse;
 import com.esaturasi.Model.MapelModel;
+import com.esaturasi.Model.Materi;
 import com.esaturasi.Model.ScheduleItem;
-import com.esaturasi.Model.Siswa;
+
 
 import java.util.List;
 
@@ -28,14 +29,13 @@ public interface ApiService {
     @GET("page/api/get_mapel.php")
     Call<ApiResponse<List<MapelModel>>> getMapel();
 
-
     @GET("page/api/get_jadwal.php?kd_kelas=K2401&hari=senin")
     Call<ApiResponse<List<ScheduleItem>>> getJadwal(
             @Query("kd_kelas") String kdKelas,
             @Query("hari") String hari
     );
     @GET("page/api/get_tugas.php") // Ganti dengan nama endpoint API Anda
-    Call<List<Task>> getTasks(@Query("nisn") String nisn);
+    Call<ApiResponse<List<Task>>> getTugas(@Query("kd_kelas") String kdKelas);
 
     @GET("page/api/get_informasi.php")
     Call<ApiResponse<List<InformasiModel>>> getInformasi();
@@ -44,7 +44,19 @@ public interface ApiService {
     Call<ApiResponse<List<InformasiModel>>> getTerbaruData();
 
     @GET("page/api/get_bab.php")
-    Call<ApiResponse<List<BabModel>>> getBab();
+    Call<ApiResponse<List<BabModel>>> getBabsByMapelAndBab(
+            @Query("nama_mapel") String mapel,
+            @Query("kd_bab") String kdBab,
+            @Query("nama_bab") String namaBab
+    );
+
+
+    @GET("page/api/get_materi.php")
+    Call<ApiResponse<List<Materi>>> getMateri(
+            @Query("nama_mapel") String namaMapel,
+            @Query("kd_bab") String kdBab
+    );
+
 }
 
 
