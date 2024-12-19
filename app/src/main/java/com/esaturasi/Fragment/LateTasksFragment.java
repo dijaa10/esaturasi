@@ -1,5 +1,6 @@
 package com.esaturasi.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.esaturasi.Model.ApiResponse;
 import com.esaturasi.Model.Task;
 import com.esaturasi.API.ApiClient;
 import com.esaturasi.API.ApiService;
+import com.esaturasi.Tugas_kelas.DetailtugasActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,6 @@ public class LateTasksFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
-    private List<Task> taskList;
     private SharedPreferences sharedPreferences;
 
     @Nullable
@@ -39,38 +40,39 @@ public class LateTasksFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_tasks, container, false);
 
+        // Inisialisasi RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        sharedPreferences = getActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
+        // Ambil SharedPreferences
+        sharedPreferences = requireActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
 
+        // Ambil kode kelas dari SharedPreferences
         String kdKelas = sharedPreferences.getString("kd_kelas", null);
 
         if (kdKelas == null || kdKelas.isEmpty()) {
             Log.e("LateTasksFragment", "Kode Kelas tidak ditemukan.");
-            return view; // Jika kode kelas tidak ada, tidak akan melanjutkan untuk mengambil tugas
+            return view; // Jika kode kelas tidak ada, hentikan proses
         }
 
-        // Panggil API untuk mengambil tugas terlambat berdasarkan kode kelas
+        // Panggil API untuk mengambil tugas terlambat
         fetchLateTasks(kdKelas);
 
         return view;
     }
 
     private void fetchLateTasks(String kdKelas) {
-        // Membuat instance ApiService untuk memanggil API
         ApiService apiService = ApiClient.getApi().create(ApiService.class);
 
-        // Memanggil API getTugas yang mengirimkan parameter kd_kelas
+        // Memanggil API untuk mendapatkan semua tugas berdasarkan kode kelas
         Call<ApiResponse<List<Task>>> call = apiService.getTugas(kdKelas);
 
         call.enqueue(new Callback<ApiResponse<List<Task>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<Task>>> call, Response<ApiResponse<List<Task>>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Mendapatkan data tugas dari respons API
                     ApiResponse<List<Task>> apiResponse = response.body();
-                    taskList = apiResponse.getData();
+                    List<Task> taskList = apiResponse.getData(); // Semua tugas dari API
 
                     if (taskList != null && !taskList.isEmpty()) {
                         // Filter tugas yang statusnya "Terlambat"
@@ -81,9 +83,18 @@ public class LateTasksFragment extends Fragment {
                             }
                         }
 
-                        // Inisialisasi adapter dan set ke RecyclerView
+                        // Set tugas terlambat ke RecyclerView
                         if (!lateTasks.isEmpty()) {
-                            taskAdapter = new TaskAdapter(lateTasks);
+                            taskAdapter = new TaskAdapter(requireContext(), lateTasks, task -> {
+                                // Klik item tugas terlambat, buka DetailtugasActivity
+                                Intent intent = new Intent(requireContext(), DetailtugasActivity.class);
+                                intent.putExtra("task_id", task.getTaskId());
+                                intent.putExtra("subject", task.getSubject());
+                                intent.putExtra("deadline", task.getDeadline());
+                                intent.putExtra("description", task.getDescription());
+                                intent.putExtra("photoPath", task.getPhotoPath());
+                                startActivity(intent);
+                            });
                             recyclerView.setAdapter(taskAdapter);
                         } else {
                             Log.e("LateTasksFragment", "Tidak ada tugas yang terlambat.");

@@ -1,5 +1,7 @@
 package com.esaturasi.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import com.esaturasi.Model.ApiResponse;
 import com.esaturasi.Model.Task;
 import com.esaturasi.API.ApiClient;
 import com.esaturasi.API.ApiService;
+import com.esaturasi.Tugas_kelas.DetailtugasActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,35 +33,44 @@ public class PendingTasksFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private TaskAdapter taskAdapter;
-    private List<Task> taskList;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_all_tasks, container, false);
 
+        // Inisialisasi RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // Ambil SharedPreferences untuk mendapatkan kd_kelas
+        sharedPreferences = requireActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
+        String kdKelas = sharedPreferences.getString("kd_kelas", null);
+
+        if (kdKelas == null || kdKelas.isEmpty()) {
+            Log.e("PendingTasksFragment", "Kode Kelas tidak ditemukan.");
+            return view; // Jika kd_kelas tidak ada, hentikan proses
+        }
+
         // Panggil API untuk mengambil data tugas
-        fetchPendingTasks();
+        fetchPendingTasks(kdKelas);
 
         return view;
     }
 
-    private void fetchPendingTasks() {
-        // Membuat instance ApiService untuk memanggil API
+    private void fetchPendingTasks(String kdKelas) {
         ApiService apiService = ApiClient.getApi().create(ApiService.class);
 
-        // Memanggil API getTugas yang mengirimkan parameter kd_kelas
-        Call<ApiResponse<List<Task>>> call = apiService.getTugas("kd_kelas_value"); // Ganti dengan nilai kd_kelas yang sesuai
+        // Memanggil API untuk mendapatkan semua tugas berdasarkan kode kelas
+        Call<ApiResponse<List<Task>>> call = apiService.getTugas(kdKelas);
+
         call.enqueue(new Callback<ApiResponse<List<Task>>>() {
             @Override
             public void onResponse(Call<ApiResponse<List<Task>>> call, Response<ApiResponse<List<Task>>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    // Mendapatkan data tugas dari respons API
                     ApiResponse<List<Task>> apiResponse = response.body();
-                    taskList = apiResponse.getData();
+                    List<Task> taskList = apiResponse.getData();
 
                     if (taskList != null && !taskList.isEmpty()) {
                         // Filter tugas yang statusnya "Belum dikumpulkan"
@@ -69,11 +81,24 @@ public class PendingTasksFragment extends Fragment {
                             }
                         }
 
-                        // Inisialisasi adapter dan set ke RecyclerView
-                        taskAdapter = new TaskAdapter(pendingTasks);
-                        recyclerView.setAdapter(taskAdapter);
+                        if (!pendingTasks.isEmpty()) {
+                            // Inisialisasi TaskAdapter dengan listener
+                            taskAdapter = new TaskAdapter(requireContext(), pendingTasks, task -> {
+                                // Klik item tugas untuk membuka halaman detail
+                                Intent intent = new Intent(requireContext(), DetailtugasActivity.class);
+                                intent.putExtra("task_id", task.getTaskId());
+                                intent.putExtra("subject", task.getSubject());
+                                intent.putExtra("deadline", task.getDeadline());
+                                intent.putExtra("description", task.getDescription());
+                                intent.putExtra("photoPath", task.getPhotoPath());
+                                startActivity(intent);
+                            });
+                            recyclerView.setAdapter(taskAdapter);
+                        } else {
+                            Log.e("PendingTasksFragment", "Tidak ada tugas yang belum dikumpulkan.");
+                        }
                     } else {
-                        Log.e("PendingTasksFragment", "Tidak ada tugas yang belum dikumpulkan.");
+                        Log.e("PendingTasksFragment", "Tidak ada tugas yang tersedia.");
                     }
                 } else {
                     Log.e("PendingTasksFragment", "Gagal mengambil data tugas.");

@@ -62,7 +62,7 @@ public class JadwalActivity extends AppCompatActivity {
 
     private void loadWeeklySchedule() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://esaturasi.my.id/") // Sesuaikan URL server Anda
+                .baseUrl("http://10.0.2.2/esaturasi_web/") // Sesuaikan URL server Anda
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

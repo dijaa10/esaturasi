@@ -20,16 +20,24 @@ public class Task {
     private String deadline;
 
     @SerializedName("status")
-    private String status; // Menambahkan status
+    private String status;
+
+    @SerializedName("description")
+    private String description; // Tambahkan field untuk deskripsi tugas
+
+    @SerializedName("photoPath")
+    private String photoPath; // Tambahkan field untuk path foto tugas
 
     // Constructor
-    public Task(String taskId, String classCode, String subject, String chapterTitle, String deadline, String status) {
+    public Task(String taskId, String classCode, String subject, String chapterTitle, String deadline, String status, String description, String photoPath) {
         this.taskId = taskId;
         this.classCode = classCode;
         this.subject = subject;
         this.chapterTitle = chapterTitle;
         this.deadline = deadline;
-        this.status = status; // Menginisialisasi status
+        this.status = status;
+        this.description = description; // Inisialisasi description
+        this.photoPath = photoPath; // Inisialisasi photoPath
     }
 
     // Getter methods
@@ -53,8 +61,16 @@ public class Task {
         return deadline;
     }
 
-    public String getStatus() { // Menambahkan getter untuk status
+    public String getStatus() {
         return status;
+    }
+
+    public String getDescription() { // Getter untuk deskripsi tugas
+        return  description;
+    }
+
+    public String getPhotoPath() { // Getter untuk path foto tugas
+        return "http://10.0.2.2/esaturasi_web/page/guru/uploads/tugas/" + photoPath;
     }
 
     // Setter methods
@@ -78,7 +94,15 @@ public class Task {
         this.deadline = deadline;
     }
 
-    public void setStatus(String status) { // Menambahkan setter untuk status
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setDescription(String description) { // Setter untuk deskripsi tugas
+        this.description = description;
+    }
+
+    public void setPhotoPath(String photoPath) { // Setter untuk path foto tugas
+        this.photoPath = photoPath;
     }
 }

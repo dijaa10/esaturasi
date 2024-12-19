@@ -1,5 +1,6 @@
 package com.esaturasi.Fragment;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.esaturasi.Model.ApiResponse;
 import com.esaturasi.Model.Task;
 import com.esaturasi.API.ApiClient;
 import com.esaturasi.API.ApiService;
+import com.esaturasi.Tugas_kelas.DetailtugasActivity;
 
 import java.util.List;
 
@@ -41,7 +43,7 @@ public class AllTasksFragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        sharedPreferences = getActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
+        sharedPreferences = requireActivity().getSharedPreferences("UserSession", getContext().MODE_PRIVATE);
 
         String kdKelas = sharedPreferences.getString("kd_kelas", null);
 
@@ -50,7 +52,7 @@ public class AllTasksFragment extends Fragment {
             return view; // Jika kode kelas tidak ada, tidak akan melanjutkan untuk mengambil tugas
         }
 
-        fetchTasks(kdKelas);  // Ambil tugas berdasarkan kode kelas
+        fetchTasks(kdKelas); // Ambil tugas berdasarkan kode kelas
 
         return view;
     }
@@ -69,7 +71,17 @@ public class AllTasksFragment extends Fragment {
                     taskList = apiResponse.getData(); // Mengambil data tugas dari respons API
 
                     if (taskList != null && !taskList.isEmpty()) {
-                        taskAdapter = new TaskAdapter(taskList);
+                        // Inisialisasi TaskAdapter dengan listener
+                        taskAdapter = new TaskAdapter(requireContext(), taskList, task -> {
+                            // Pindah ke DetailtugasActivity dengan data tugas
+                            Intent intent = new Intent(requireContext(), DetailtugasActivity.class);
+                            intent.putExtra("task_id", task.getTaskId());
+                            intent.putExtra("subject", task.getSubject());
+                            intent.putExtra("deadline", task.getDeadline());
+                            intent.putExtra("description", task.getDescription());
+                            intent.putExtra("photoPath", task.getPhotoPath());
+                            startActivity(intent);
+                        });
                         recyclerView.setAdapter(taskAdapter);
                     } else {
                         Log.e("AllTasksFragment", "Tidak ada tugas yang tersedia.");

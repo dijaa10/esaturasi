@@ -1,5 +1,6 @@
 package Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,40 +16,39 @@ import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
+    private Context context;
     private List<Task> taskList;
+    private OnTaskClickListener listener;
 
-    public TaskAdapter(List<Task> taskList) {
+    public TaskAdapter(Context context, List<Task> taskList, OnTaskClickListener listener) {
+        this.context = context;
         this.taskList = taskList;
+        this.listener = listener;
     }
 
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Inflating the layout for each item
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_task, parent, false);
         return new TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        if (taskList != null && !taskList.isEmpty() && position < taskList.size()) {
-            Task task = taskList.get(position);
+        Task task = taskList.get(position);
 
-            // Set the task data into the views
-            holder.taskTitle.setText(task.getTaskId());  // Menampilkan task_id
-            holder.taskSubject.setText(task.getSubject());  // Menampilkan subject
+        holder.taskTitle.setText(task.getTaskId());
+        holder.taskSubject.setText(task.getSubject());
+        holder.taskDeadline.setText(task.getDeadline());
+        holder.taskStatus.setText(task.getStatus());
 
-            // Memformat tanggal deadline jika perlu
-            holder.taskDeadline.setText(task.getDeadline());  // Menampilkan deadline
-
-            // Menampilkan status tugas
-            holder.taskStatus.setText(task.getStatus());
-        }
+        // Tambahkan OnClickListener ke itemView
+        holder.itemView.setOnClickListener(v -> listener.onTaskClick(task));
     }
 
     @Override
     public int getItemCount() {
-        return taskList != null ? taskList.size() : 0;
+        return taskList.size();
     }
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
@@ -61,5 +61,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             taskDeadline = itemView.findViewById(R.id.taskDeadline);
             taskStatus = itemView.findViewById(R.id.taskStatus);
         }
+    }
+
+    // Interface untuk menangani klik item
+    public interface OnTaskClickListener {
+        void onTaskClick(Task task);
     }
 }

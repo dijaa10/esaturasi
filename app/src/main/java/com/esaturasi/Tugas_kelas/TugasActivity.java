@@ -1,5 +1,6 @@
 package com.esaturasi.Tugas_kelas;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,16 +32,16 @@ public class TugasActivity extends AppCompatActivity {
     private ViewPager2 viewPager;
     private TabLayout tabLayout;
 
+    // Di dalam TugasActivity.java
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tugas); // Pastikan layout Anda sesuai
+        setContentView(R.layout.activity_tugas);
 
         // Inisialisasi ViewPager2 dan TabLayout
         viewPager = findViewById(R.id.view_pager);
         tabLayout = findViewById(R.id.tab_layout);
 
-        // Set TasksPagerAdapter ke ViewPager2
         tasksPagerAdapter = new TasksPagerAdapter(this);
         viewPager.setAdapter(tasksPagerAdapter);
 
@@ -61,13 +62,13 @@ public class TugasActivity extends AppCompatActivity {
             }
         }).attach();
 
-        // Ambil Kode Kelas dari SharedPreferences
+        // Ambil kode kelas dari SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
         String kdKelas = sharedPreferences.getString("kd_kelas", null);
 
         if (kdKelas == null || kdKelas.isEmpty()) {
             Toast.makeText(this, "Kode Kelas tidak ditemukan. Silakan login ulang.", Toast.LENGTH_SHORT).show();
-            finish(); // Tutup activity jika Kode Kelas tidak ada
+            finish();
             return;
         }
 
@@ -88,30 +89,37 @@ public class TugasActivity extends AppCompatActivity {
                     // Ambil data tugas dari response
                     List<Task> tasks = apiResponse.getData();
 
-                    // Debugging log untuk memeriksa data tugas yang diterima
                     Log.d("TugasActivity", "Jumlah tugas yang diterima: " + (tasks != null ? tasks.size() : 0));
 
                     if (tasks == null || tasks.isEmpty()) {
-                        // Tugas kosong atau null
                         Toast.makeText(TugasActivity.this, "Tidak ada tugas yang tersedia", Toast.LENGTH_SHORT).show();
                     } else {
-                        // Menampilkan data tugas di RecyclerView
+                        // Inisialisasi RecyclerView
                         recyclerView = findViewById(R.id.recyclerView);
                         recyclerView.setLayoutManager(new LinearLayoutManager(TugasActivity.this));
 
-                        // Mengupdate adapter dengan data tugas
-                        taskAdapter = new TaskAdapter(tasks);
+                        // Inisialisasi TaskAdapter dengan listener
+                        taskAdapter = new TaskAdapter(TugasActivity.this, tasks, task -> {
+                            // Berpindah ke DetailTugasActivity saat item diklik
+                            Intent intent = new Intent(TugasActivity.this, DetailtugasActivity.class);
+                            intent.putExtra("taskId", task.getTaskId());
+                            intent.putExtra("subject", task.getSubject());
+                            intent.putExtra("deadline", task.getDeadline());
+                            intent.putExtra("status", task.getStatus());
+                            intent.putExtra("description", task.getDescription());
+                            intent.putExtra("photoPath", task.getPhotoPath());
+                            startActivity(intent);
+                        });
+
                         recyclerView.setAdapter(taskAdapter);
                     }
                 } else {
-                    // Menangani kesalahan ketika respons API tidak berhasil
                     Toast.makeText(TugasActivity.this, "Gagal memuat data tugas", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ApiResponse<List<Task>>> call, Throwable t) {
-                // Menangani kesalahan koneksi
                 Log.e("TugasActivity", "Kesalahan koneksi: " + t.getMessage());
                 Toast.makeText(TugasActivity.this, "Kesalahan koneksi: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
